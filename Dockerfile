@@ -13,16 +13,18 @@ RUN \
   apt-get update && \
   apt-get install -y apt-transport-https software-properties-common && \
   echo deb https://fanout.jfrog.io/artifactory/debian fanout-jammy main \
-    | tee /etc/apt/sources.list.d/fanout.list && \
+  | tee /etc/apt/sources.list.d/fanout.list && \
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys \
-    7D0343148157C3DF
+  7D0343148157C3DF && \
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys \
+  7D0343148157C3DF
 
 ENV PUSHPIN_VERSION 1.37.0-1~jammy
 
 # Install Pushpin
 RUN \
   apt-get update && \
-  apt-get install -y pushpin=$PUSHPIN_VERSION
+  apt-get install -y pushpin
 
 # Cleanup
 RUN \
